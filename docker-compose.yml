@@ -1,0 +1,15 @@
+version: "2.3"
+services:
+  pypi:
+    image: fabianonunes/pypi-server:1.3.0
+    ports:
+    - 7777:7777
+    volumes:
+    - /opt/packages:/packages
+    init: true
+    restart: always
+    build:
+      context: .
+      args:
+        http_proxy: ${PROXY}
+        https_proxy: ${PROXY}
